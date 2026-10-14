@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HomeWash – Smart laundry management</title>
+    <meta name="description"
+        content="Book a laundry pickup and track every order,  get fresh and  folded clothes delivered to your doorstep.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header>
+        <nav>
+            <a class="brand" href="#home" aria-label="HomeWash home">
+                <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                        d="M12 2.5c3.6 4.3 6.5 7.6 6.5 11.3A6.5 6.5 0 0 1 12 20.3a6.5 6.5 0 0 1-6.5-6.5C5.5 10.1 8.4 6.8 12 2.5z"
+                        fill="#1769e0" />
+                    <path d="M8.6 14.2a3.6 3.6 0 0 0 3 3.3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"
+                        fill="none" />
+                </svg>
+                <span>HomeWash</span>
+            </a>
+
+            <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-links" id="nav-links">
+                <a href="#home">Home</a>
+                <a href="#track">Track order</a>
+                <a href="#how">How it works</a>
+                <a href="#services">Services</a>
+                <a href="booking.html" class="nav-cta">Book a pickup</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ================= HERO ================= -->
+        <section class="hero" id="home">
+            <span class="bubble" aria-hidden="true"></span>
+            <span class="bubble" aria-hidden="true"></span>
+            <span class="bubble" aria-hidden="true"></span>
+            <span class="bubble" aria-hidden="true"></span>
+            <span class="bubble" aria-hidden="true"></span>
+            <span class="bubble" aria-hidden="true"></span>
+
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <p class="kicker">Smart laundry management</p>
+                    <h1>Clean clothes, tracked from pickup to doorstep.</h1>
+                    <p class="lead">Book a pickup in seconds, follow every order in real time, and get your laundry back
+                        washed, dried and folded.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="booking.html">Book a pickup</a>
+                        <a class="btn btn-ghost" href="#how">See how it works</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <svg class="machine" viewBox="0 0 340 420" role="img"
+                        aria-label="A washing machine with clothes tumbling in the drum">
+                        <defs>
+                            <clipPath id="glass">
+                                <circle cx="170" cy="250" r="90" />
+                            </clipPath>
+                            <linearGradient id="glassFill" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0" stop-color="#123a6b" />
+                                <stop offset="1" stop-color="#0a2342" />
+                            </linearGradient>
+                        </defs>
+
+                        <!-- body -->
+                        <rect x="20" y="10" width="300" height="400" rx="38" fill="#fff" stroke="#dce7f5"
+                            stroke-width="2" />
+                        <line x1="20" y1="96" x2="320" y2="96" stroke="#e6eef8" stroke-width="2" />
+
+                        <!-- control panel -->
+                        <circle cx="72" cy="53" r="21" fill="#eaf2ff" stroke="#c9dcf7" stroke-width="2" />
+                        <line x1="72" y1="53" x2="72" y2="39" stroke="#1769e0" stroke-width="3" stroke-linecap="round"
+                            class="dial" />
+                        <rect x="112" y="38" width="122" height="30" rx="9" fill="#0a2342" />
+                        <text x="173" y="58" text-anchor="middle" font-family="Figtree, Arial, sans-serif"
+                            font-size="13" font-weight="600" fill="#8ed1fc">Wash · 40°</text>
+                        <circle cx="274" cy="53" r="9" fill="#1769e0" />
+
+                        <!-- door -->
+                        <circle cx="170" cy="250" r="118" fill="#f4f9ff" stroke="#dce7f5" stroke-width="2" />
+                        <circle cx="170" cy="250" r="104" fill="#fff" stroke="#1769e0" stroke-width="12" />
+                        <circle cx="170" cy="250" r="90" fill="url(#glassFill)" />
+
+                        <g clip-path="url(#glass)">
+                            <!-- water -->
+                            <g transform="translate(20 236)">
+                                <path class="wave wave-back"
+                                    d="M0 0 Q30 -14 60 0 T120 0 T180 0 T240 0 T300 0 T360 0 T420 0 T480 0 V140 H0Z"
+                                    fill="#8ed1fc" opacity=".45" />
+                            </g>
+                            <g transform="translate(20 246)">
+                                <path class="wave wave-front"
+                                    d="M0 0 Q30 -12 60 0 T120 0 T180 0 T240 0 T300 0 T360 0 T420 0 T480 0 V140 H0Z"
+                                    fill="#4aa8f0" opacity=".75" />
+                            </g>
+
+                            <!-- tumbling clothes -->
+                            <g class="clothes">
+                                <rect x="120" y="205" width="48" height="34" rx="11" fill="#ffc533"
+                                    transform="rotate(-18 144 222)" />
+                                <circle cx="218" cy="268" r="17" fill="#fff" />
+                                <rect x="132" y="272" width="40" height="28" rx="10" fill="#8ed1fc"
+                                    transform="rotate(24 152 286)" />
+                                <rect x="196" y="212" width="30" height="22" rx="8" fill="#fff" opacity=".9"
+                                    transform="rotate(12 211 223)" />
+                            </g>
+
+                            <!-- bubbles in the drum -->
+                            <circle class="drum-bubble b1" cx="140" cy="300" r="5" fill="#fff" opacity=".55" />
+                            <circle class="drum-bubble b2" cx="200" cy="310" r="3.5" fill="#fff" opacity=".55" />
+                            <circle class="drum-bubble b3" cx="172" cy="315" r="4.5" fill="#fff" opacity=".55" />
+                        </g>
+
+                        <!-- glass reflection -->
+                        <path d="M112 216a66 66 0 0 1 38-42" stroke="#fff" stroke-opacity=".35" stroke-width="7"
+                            stroke-linecap="round" fill="none" />
+                    </svg>
+
+                    <!-- live order card -->
+                    <div class="tracker" aria-live="polite">
+                        <div class="tracker-head">
+                            <span class="tracker-id">Order #1042</span>
+                            <span class="tracker-badge" id="trackerBadge">Washing</span>
+                        </div>
+                        <p class="tracker-note" id="trackerNote">Cold wash · 40 min left</p>
+                        <div class="tracker-bar"><span id="trackerFill"></span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ================= TRACK ORDER ================= -->
+        <section class="track" id="track">
+            <div class="container track-grid">
+                <div class="track-intro">
+                    <h2>Track your order</h2>
+                    <p>Enter your order ID to see where your laundry is right now.</p>
+
+                    <form class="track-form" id="trackForm" novalidate>
+                        <label for="orderId">Order ID</label>
+                        <div class="track-field">
+                            <input id="orderId" name="orderId" type="text" placeholder="e.g. HW1042" autocomplete="off"
+                                autocapitalize="characters" spellcheck="false">
+                            <button class="btn btn-primary" type="submit">Track</button>
+                        </div>
+                        <p class="track-msg" id="trackMsg" role="status">Want to try it? Use the sample order IDs HW1042
+                            or HW1001.</p>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= HOW IT WORKS ================= -->
+        <section class="how" id="how">
+            <div class="container">
+                <h2>Three steps, no trips to the laundromat</h2>
+                <ol class="steps" id="steps">
+                    <li>
+                        <span class="step-num">1</span>
+                        <h3>Book a pickup</h3>
+                        <p>Choose your services and a time slot that suits you. A rider collects your bag from your
+                            door.</p>
+                    </li>
+                    <li>
+                        <span class="step-num">2</span>
+                        <h3>We wash and fold</h3>
+                        <p>Your clothes are sorted, cleaned and dried. You can follow each stage from the order card.
+                        </p>
+                    </li>
+                    <li>
+                        <span class="step-num">3</span>
+                        <h3>Delivered fresh and fast</h3>
+                        <p>Your laundry comes back folded and ready for the wardrobe, on the day you picked.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ================= SERVICES ================= -->
+        <section class="services" id="services">
+            <div class="container services-grid">
+                <div class="services-intro">
+                    <h2>Simple services, clear prices</h2>
+                    <p>Pay for what you send. Every order shows its total before you confirm.</p>
+                </div>
+
+                <ul class="service-list">
+                    <li>
+                        <div>
+                            <h3>Wash &amp; fold</h3>
+                            <p>Sorted, washed, dried and folded.</p>
+                        </div>
+                        <span class="price">Starting from ₹59<small>/kg</small></span>
+                    </li>
+                    <li>
+                        <div>
+                            <h3>Ironing</h3>
+                            <p>Steam pressed handled well and folded.</p>
+                        </div>
+                        <span class="price">from ₹15<small>/piece</small></span>
+                    </li>
+                    <li>
+                        <div>
+                            <h3>Dry cleaning</h3>
+                            <p>Suits, sarees and delicate wear.</p>
+                        </div>
+                        <span class="price">from ₹149<small>/piece</small></span>
+                    </li>
+                    <li>
+                        <div>
+                            <h3>Express delivery</h3>
+                            <p>Back to you within 24 hours.</p>
+                        </div>
+                        <span class="price">add ₹40<small>/kg</small></span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ================= CALL TO ACTION ================= -->
+        <section class="cta" id="book">
+            <div class="container">
+                <div class="cta-card">
+                    <h2>Your next pickup is a tap away.</h2>
+                    <p>Pick a time and we will handle the rest.</p>
+                    <a class="btn btn-light" href="booking.html">Book a pickup</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= TRACKING POPUP ================= -->
+    <dialog class="book-dialog track-dialog" id="trackDialog" aria-label="Order status">
+        <div class="book-body">
+            <button class="book-close" type="button" id="trackClose" aria-label="Close">&times;</button>
+            <div id="trackBody" aria-live="polite"></div>
+        </div>
+    </dialog>
+
+    <footer>
+        <div class="container footer-inner">
+            <span class="brand-small">HomeWash</span>
+            <span>© <span id="year">2026</span> HomeWash. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script type="module" src="firebase-init.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>

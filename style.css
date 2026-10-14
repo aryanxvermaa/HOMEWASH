@@ -1,0 +1,1980 @@
+/* =========================================================
+   FreshFold – smart laundry management
+   ========================================================= */
+
+:root {
+    --ink: #0a2342;
+    --brand: #1769e0;
+    --brand-dark: #1257bd;
+    --foam: #f4f9ff;
+    --aqua: #8ed1fc;
+    --sun: #ffc533;
+    --slate: #52607a;
+    --line: #dce7f5;
+
+    --font-display: "Bricolage Grotesque", "Arial Black", Arial, sans-serif;
+    --font-body: "Figtree", Arial, Helvetica, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    background: var(--foam);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-display);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+a {
+    color: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+:focus-visible {
+    outline: 3px solid var(--brand);
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+
+
+/* ================= NAVBAR ================= */
+
+header {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav {
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 24px;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--slate);
+    font-size: 15px;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--brand);
+}
+
+.nav-links .nav-cta {
+    background: var(--brand);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 999px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.nav-links .nav-cta:hover {
+    background: var(--brand-dark);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform 0.25s, opacity 0.25s;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ================= BUTTONS ================= */
+
+.btn {
+    display: inline-block;
+    border: none;
+    padding: 16px 30px;
+    border-radius: 14px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--brand);
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(23, 105, 224, 0.28);
+}
+
+.btn-primary:hover {
+    background: var(--brand-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px rgba(23, 105, 224, 0.32);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    box-shadow: inset 0 0 0 2px var(--line);
+}
+
+.btn-ghost:hover {
+    box-shadow: inset 0 0 0 2px var(--brand);
+    color: var(--brand);
+}
+
+.btn-light {
+    background: #fff;
+    color: var(--ink);
+}
+
+.btn-light:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100vh - 73px);
+    display: flex;
+    align-items: center;
+    padding: 60px 30px 80px;
+    background:
+        radial-gradient(circle at 85% 10%, #dbeafe, transparent 40%),
+        radial-gradient(circle at 5% 95%, #e0f2fe, transparent 40%),
+        var(--foam);
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-content {
+    text-align: left;
+}
+
+.kicker {
+    display: inline-block;
+    padding: 7px 16px;
+    margin-bottom: 24px;
+    border-radius: 999px;
+    background: #e0edff;
+    color: var(--brand);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 5.6vw, 72px);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    margin-bottom: 24px;
+    color: var(--ink);
+}
+
+.lead {
+    max-width: 520px;
+    margin-bottom: 36px;
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--slate);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+
+/* ---------- washing machine ---------- */
+
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.machine {
+    width: min(100%, 400px);
+    height: auto;
+    filter: drop-shadow(0 30px 40px rgba(23, 105, 224, 0.22));
+}
+
+.dial {
+    transform-origin: 72px 53px;
+    transform: rotate(40deg);
+}
+
+.clothes {
+    transform-origin: 170px 250px;
+    animation: tumble 7s linear infinite;
+}
+
+.wave {
+    animation: slide 3.6s linear infinite;
+}
+
+.wave-back {
+    animation-duration: 5.4s;
+    animation-direction: reverse;
+}
+
+.drum-bubble {
+    animation: rise 3.2s ease-in infinite;
+}
+
+.drum-bubble.b2 {
+    animation-delay: 1s;
+}
+
+.drum-bubble.b3 {
+    animation-delay: 2s;
+}
+
+@keyframes tumble {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes slide {
+    to {
+        transform: translateX(-120px);
+    }
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-70px);
+        opacity: 0;
+    }
+}
+
+
+/* ---------- live order card ---------- */
+
+.tracker {
+    position: absolute;
+    left: -6%;
+    bottom: 8%;
+    width: 250px;
+    padding: 16px 18px 18px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(10, 35, 66, 0.14);
+}
+
+.tracker-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.tracker-id {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.tracker-badge {
+    padding: 3px 12px;
+    border-radius: 999px;
+    background: var(--sun);
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.tracker-note {
+    font-size: 14px;
+    color: var(--slate);
+    margin-bottom: 14px;
+    min-height: 22px;
+    transition: opacity 0.3s;
+}
+
+.tracker-badge,
+.tracker-note.is-swapping {
+    transition: opacity 0.3s;
+}
+
+.tracker.is-swapping .tracker-badge,
+.tracker.is-swapping .tracker-note {
+    opacity: 0;
+}
+
+.tracker-bar {
+    height: 8px;
+    border-radius: 999px;
+    background: #e6eef8;
+    overflow: hidden;
+}
+
+.tracker-bar span {
+    display: block;
+    height: 100%;
+    width: 50%;
+    border-radius: 999px;
+    background: var(--brand);
+    transition: width 0.7s cubic-bezier(0.3, 0.8, 0.3, 1);
+}
+
+
+/* ---------- drifting bubbles ---------- */
+
+.bubble {
+    position: absolute;
+    bottom: -60px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(236, 43, 43, 0.95), rgba(142, 209, 252, 0.35));
+    border: 1px solid rgba(23, 105, 224, 0.12);
+    animation: drift linear infinite;
+    pointer-events: none;
+}
+
+.bubble:nth-child(1) {
+    left: 6%;
+    width: 26px;
+    height: 26px;
+    animation-duration: 16s;
+}
+
+.bubble:nth-child(2) {
+    left: 18%;
+    width: 14px;
+    height: 14px;
+    animation-duration: 12s;
+    animation-delay: 3s;
+}
+
+.bubble:nth-child(3) {
+    left: 44%;
+    width: 34px;
+    height: 34px;
+    animation-duration: 20s;
+    animation-delay: 1s;
+}
+
+.bubble:nth-child(4) {
+    left: 62%;
+    width: 18px;
+    height: 18px;
+    animation-duration: 14s;
+    animation-delay: 6s;
+}
+
+.bubble:nth-child(5) {
+    left: 80%;
+    width: 30px;
+    height: 30px;
+    animation-duration: 18s;
+    animation-delay: 2s;
+}
+
+.bubble:nth-child(6) {
+    left: 92%;
+    width: 16px;
+    height: 16px;
+    animation-duration: 13s;
+    animation-delay: 8s;
+}
+
+@keyframes drift {
+    0% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(24px, -110vh);
+        opacity: 0;
+    }
+}
+
+
+/* ---------- page-load entrance (hero only) ---------- */
+
+.hero-content>* {
+    animation: enter 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero-content> :nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.hero-content> :nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.hero-content> :nth-child(3) {
+    animation-delay: 0.28s;
+}
+
+.hero-content> :nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.machine {
+    animation: machine-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+}
+
+.tracker {
+    animation: card-in 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.9s both;
+}
+
+@keyframes enter {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes machine-in {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes card-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+
+/* ================= TRACK ORDER ================= */
+
+.track {
+    padding: 110px 0;
+    background: #63a8e4;
+    border-top: 1px solid var(--line);
+}
+
+.track-grid {
+    max-width: 620px;
+    text-align: center;
+}
+
+.track-intro h2 {
+    margin-bottom: 16px;
+}
+
+.track-intro>p {
+    max-width: 400px;
+    margin: 0 auto 34px;
+    color: var(--slate);
+}
+
+.track-form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.track-field {
+    display: flex;
+    gap: 10px;
+}
+
+.track-field input {
+    flex: 1;
+    min-width: 0;
+    padding: 15px 18px;
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    background: var(--foam);
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--ink);
+    text-transform: uppercase;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.track-field input::placeholder {
+    text-transform: none;
+    color: #161401;
+}
+
+.track-field input:focus {
+    outline: none;
+    border-color: var(--brand);
+    background: #d0e0e7;
+}
+
+.track-field .btn {
+    padding: 15px 28px;
+}
+
+.track-msg {
+    text-align: left;
+    margin-top: 12px;
+    font-size: 15px;
+    color: var(--slate);
+}
+
+.track-msg.error {
+    color: #b42318;
+    font-weight: 500;
+}
+
+.track-card {
+    padding: 34px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: var(--foam);
+    animation: card-in 0.5s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+.track-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding-bottom: 24px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+}
+
+.track-label {
+    display: block;
+    font-size: 14px;
+    color: var(--slate);
+    margin-bottom: 2px;
+}
+
+.track-top h3 {
+    font-size: 28px;
+    margin-bottom: 14px;
+}
+
+.track-eta {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+}
+
+.status-badge {
+    padding: 6px 16px;
+    border-radius: 999px;
+    background: var(--sun);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.status-badge.delivered {
+    background: #d9f5e3;
+    color: #14532d;
+}
+
+.timeline {
+    list-style: none;
+}
+
+.timeline li {
+    position: relative;
+    padding: 0 0 28px 48px;
+}
+
+.timeline li:last-child {
+    padding-bottom: 0;
+}
+
+.timeline li::before {
+    content: "";
+    position: absolute;
+    left: 13px;
+    top: 30px;
+    bottom: 2px;
+    width: 2px;
+    background: var(--line);
+}
+
+.timeline li:last-child::before {
+    display: none;
+}
+
+.timeline li.done::before {
+    background: var(--brand);
+}
+
+.dot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--line);
+    background: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.timeline li.done .dot {
+    background: var(--brand);
+    border-color: var(--brand);
+}
+
+.timeline li.current .dot {
+    border: 4px solid var(--brand);
+    box-shadow: 0 0 0 6px rgba(23, 105, 224, 0.15);
+}
+
+.timeline h4 {
+    font-family: var(--font-body);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.timeline li.pending h4 {
+    color: #93a1b8;
+}
+
+.timeline p {
+    font-size: 14px;
+    color: var(--slate);
+}
+
+
+/* ================= BOOKING DIALOG ================= */
+
+.book-dialog {
+    border: none;
+    border-radius: 26px;
+    padding: 0;
+    width: min(520px, calc(100% - 32px));
+    max-height: calc(100vh - 32px);
+    margin: auto;
+    background: #fff;
+    color: var(--ink);
+    box-shadow: 0 40px 90px rgba(10, 35, 66, 0.35);
+    overflow-y: auto;
+}
+
+.book-dialog[open] {
+    animation: card-in 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.1) both;
+}
+
+.book-dialog::backdrop {
+    background: rgba(10, 35, 66, 0.55);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+
+.book-body {
+    position: relative;
+    padding: 34px 32px 32px;
+}
+
+.book-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--foam);
+    color: var(--ink);
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.book-close:hover {
+    background: var(--line);
+}
+
+.book-body h2 {
+    font-size: 30px;
+    margin-bottom: 8px;
+    padding-right: 36px;
+}
+
+.book-sub {
+    margin-bottom: 24px;
+    color: var(--slate);
+    font-size: 16px;
+}
+
+.field {
+    margin-bottom: 16px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    background: var(--foam);
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--ink);
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.field textarea {
+    resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    outline: none;
+    border-color: var(--brand);
+    background: #fff;
+}
+
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.book-submit {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.book-done {
+    text-align: center;
+    padding: 10px 0 4px;
+}
+
+.book-done[hidden] {
+    display: none;
+}
+
+.book-done h2 {
+    padding-right: 0;
+}
+
+.done-check {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: #d9f5e3;
+    color: #14532d;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.done-id {
+    margin: 4px 0 26px;
+    padding: 16px;
+    border-radius: 14px;
+    background: var(--foam);
+    border: 1px dashed var(--aqua);
+}
+
+.done-id strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 30px;
+    letter-spacing: 0.02em;
+}
+
+.done-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+/* ================= SECTIONS ================= */
+
+.how,
+.services {
+    padding: 110px 0;
+}
+
+.how {
+    background: var(--foam);
+}
+
+.services {
+    background: #fff;
+}
+
+.cta {
+    background: #fff;
+}
+
+h2 {
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.how h2 {
+    max-width: 640px;
+    margin-bottom: 64px;
+}
+
+
+/* ---------- steps ---------- */
+
+.steps {
+    list-style: none;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+}
+
+.steps::before,
+.steps::after {
+    content: "";
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    right: 0;
+    height: 3px;
+    border-radius: 3px;
+}
+
+.steps::before {
+    background: var(--line);
+}
+
+.steps::after {
+    background: var(--brand);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.6s cubic-bezier(0.5, 0, 0.2, 1);
+}
+
+.steps.in::after {
+    transform: scaleX(1);
+}
+
+.steps li {
+    position: relative;
+    z-index: 1;
+}
+
+.step-num {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 26px;
+    border-radius: 50%;
+    background: var(--brand);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 20px;
+    box-shadow: 0 0 0 8px var(--foam);
+}
+
+.steps h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.steps p {
+    max-width: 320px;
+    color: var(--slate);
+}
+
+
+/* ---------- services ---------- */
+
+.services-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.services-intro {
+    position: sticky;
+    top: 110px;
+}
+
+.services-intro h2 {
+    margin-bottom: 18px;
+}
+
+.services-intro p {
+    max-width: 380px;
+    color: var(--slate);
+}
+
+.service-list {
+    list-style: none;
+    border-top: 1px solid var(--line);
+}
+
+.service-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 28px 16px;
+    border-bottom: 1px solid var(--line);
+    transition: background 0.25s, padding-left 0.25s;
+}
+
+.service-list li:hover {
+    background: var(--foam);
+    padding-left: 28px;
+}
+
+.service-list h3 {
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.service-list p {
+    color: var(--slate);
+    font-size: 16px;
+}
+
+.price {
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 24px;
+    color: var(--brand);
+    letter-spacing: -0.02em;
+}
+
+.price small {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--slate);
+    margin-left: 2px;
+}
+
+
+/* ---------- call to action ---------- */
+
+.cta {
+    padding: 0 0 110px;
+}
+
+.cta-card {
+    position: relative;
+    overflow: hidden;
+    padding: 80px 40px;
+    border-radius: 32px;
+    text-align: center;
+    color: #fff;
+    background:
+        radial-gradient(circle at 10% 0%, #1f5fc4, transparent 50%),
+        radial-gradient(circle at 100% 100%, #123a6b, transparent 55%),
+        var(--ink);
+}
+
+.cta-card h2 {
+    max-width: 640px;
+    margin: 0 auto 14px;
+}
+
+.cta-card p {
+    margin-bottom: 34px;
+    color: #b9d3f2;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    border-top: 1px solid var(--line);
+    background: #fff;
+    padding: 30px 0;
+    font-size: 15px;
+    color: var(--slate);
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.brand-small {
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: var(--ink);
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+
+    .hero {
+        min-height: auto;
+        padding: 40px 20px 70px;
+    }
+
+    .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .tracker {
+        left: 0;
+        bottom: 4%;
+        width: 230px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .services-intro {
+        position: static;
+    }
+}
+
+@media (max-width: 700px) {
+
+    body {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 0 20px;
+    }
+
+    nav {
+        padding: 14px 20px;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 20px 20px;
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+        display: none;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 14px 0;
+        font-size: 16px;
+    }
+
+    .nav-links .nav-cta {
+        margin-top: 8px;
+        text-align: center;
+    }
+
+    .lead {
+        font-size: 17px;
+    }
+
+    .how,
+    .services,
+    .track {
+        padding: 70px 0;
+    }
+
+    .track-card {
+        padding: 24px 20px;
+    }
+
+    .track-field {
+        flex-direction: column;
+    }
+
+    .book-body {
+        padding: 30px 20px 24px;
+    }
+
+    .field-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .how h2 {
+        margin-bottom: 44px;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .steps::before,
+    .steps::after {
+        display: none;
+    }
+
+    .service-list li {
+        padding: 22px 6px;
+    }
+
+    .service-list h3,
+    .price {
+        font-size: 20px;
+    }
+
+    .cta {
+        padding-bottom: 70px;
+    }
+
+    .cta-card {
+        padding: 60px 24px;
+        border-radius: 24px;
+    }
+}
+
+
+/* =========================================================
+   BOOKING PAGE  (HomeWash – Book Laundry)
+   ========================================================= */
+
+[hidden] {
+    display: none !important;
+}
+
+/* ---------- navbar for pages without a menu button ---------- */
+
+nav h2 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+}
+
+@media (max-width: 700px) {
+    nav:not(:has(.menu-toggle)) .nav-links {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+        padding: 0;
+        border: none;
+        background: none;
+    }
+
+    nav:not(:has(.menu-toggle)) .nav-links a {
+        padding: 0;
+        font-size: 14px;
+    }
+
+    nav h2 {
+        font-size: 20px;
+    }
+}
+
+
+/* ---------- page layout ---------- */
+
+.booking {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px 30px 100px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 390px;
+    gap: 40px 44px;
+    align-items: start;
+}
+
+.booking-heading {
+    grid-column: 1 / -1;
+    max-width: 640px;
+}
+
+.booking-heading span {
+    display: inline-block;
+    padding: 7px 16px;
+    margin-bottom: 22px;
+    border-radius: 999px;
+    background: #e0edff;
+    color: var(--brand);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+}
+
+.booking-heading h1 {
+    font-size: clamp(38px, 5vw, 60px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.04;
+    margin-bottom: 16px;
+}
+
+.booking-heading p {
+    max-width: 480px;
+    font-size: 19px;
+    color: var(--slate);
+}
+
+
+/* ---------- clothes ---------- */
+
+.clothes-section h2 {
+    font-size: 26px;
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+}
+
+.clothes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    gap: 16px;
+}
+
+.clothes-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.clothes-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--aqua);
+    box-shadow: 0 18px 34px rgba(23, 105, 224, 0.12);
+}
+
+.clothes-icon {
+    display: grid;
+    place-items: center;
+    width: 62px;
+    height: 62px;
+    margin-bottom: 18px;
+    border-radius: 18px;
+    background: var(--foam);
+    font-size: 32px;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.clothes-card:hover .clothes-icon {
+    transform: rotate(-8deg) scale(1.08);
+}
+
+.clothes-card h3 {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.clothes-card p {
+    margin-bottom: 18px;
+    font-size: 15px;
+    color: var(--slate);
+}
+
+.clothes-card button {
+    width: 100%;
+    margin-top: auto;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: #e0edff;
+    color: var(--brand);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+
+.clothes-card button:hover {
+    background: var(--brand);
+    color: #fff;
+}
+
+.clothes-card button:active {
+    transform: scale(0.96);
+}
+
+
+/* ---------- laundry bag ---------- */
+
+.laundry-bag {
+    position: sticky;
+    top: 96px;
+    padding: 28px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 26px;
+    box-shadow: 0 24px 50px rgba(10, 35, 66, 0.08);
+}
+
+.bag-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.bag-header>div:first-child>span {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--slate);
+}
+
+.bag-header h2 {
+    font-size: 26px;
+    letter-spacing: -0.02em;
+}
+
+.bag-count {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--foam);
+    border: 1px solid var(--line);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--slate);
+}
+
+.bag-count span {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--brand);
+}
+
+.cart-items {
+    margin: 22px 0;
+    max-height: 330px;
+    overflow-y: auto;
+}
+
+.empty-cart {
+    padding: 34px 16px;
+    border: 2px dashed var(--line);
+    border-radius: 18px;
+    text-align: center;
+}
+
+.empty-cart>div {
+    font-size: 44px;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.empty-cart h3 {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.empty-cart p {
+    font-size: 15px;
+    color: var(--slate);
+}
+
+/* rows that JavaScript adds to #cartItems */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-info h4 {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.cart-item-info p,
+.cart-item-info span {
+    font-size: 14px;
+    color: var(--slate);
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-item-controls button {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    background: var(--foam);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.cart-item-controls button:hover {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #fff;
+}
+
+.cart-item-controls span {
+    min-width: 18px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.cart-item-price {
+    min-width: 54px;
+    text-align: right;
+    font-weight: 600;
+}
+
+.cart-summary {
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    font-size: 16px;
+    color: var(--slate);
+}
+
+.summary-divider {
+    height: 1px;
+    margin: 10px 0;
+    background: var(--line);
+}
+
+.summary-row.total {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+}
+
+.checkout-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 17px;
+    border: none;
+    border-radius: 14px;
+    background: var(--brand);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(23, 105, 224, 0.28);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.checkout-btn:hover {
+    background: var(--brand-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(23, 105, 224, 0.32);
+}
+
+.checkout-btn:active {
+    transform: translateY(0);
+}
+
+.checkout-btn:disabled {
+    background: #b9c6db;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* ---------- pop-up dialogs (booking + tracking) ---------- */
+
+dialog {
+    border: none;
+    border-radius: 26px;
+    padding: 0;
+    width: min(520px, calc(100% - 32px));
+    max-height: calc(100vh - 32px);
+    margin: auto;
+    background: #fff;
+    color: var(--ink);
+    box-shadow: 0 40px 90px rgba(10, 35, 66, 0.35);
+    overflow-y: auto;
+}
+
+dialog[open] {
+    animation: card-in 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.1) both;
+}
+
+dialog::backdrop {
+    background: rgba(10, 35, 66, 0.55);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+
+.dialog-content {
+    position: relative;
+    padding: 34px 32px 32px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--foam);
+    color: var(--ink);
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.close-btn:hover {
+    background: var(--line);
+}
+
+dialog h2 {
+    font-size: 30px;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    padding-right: 36px;
+}
+
+#bookForm>p {
+    margin-bottom: 8px;
+    color: var(--slate);
+}
+
+dialog label {
+    display: block;
+    margin: 16px 0 6px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+dialog input,
+dialog select,
+dialog textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    background: var(--foam);
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--ink);
+    transition: border-color 0.2s, background 0.2s;
+}
+
+dialog textarea {
+    resize: vertical;
+}
+
+dialog input:focus,
+dialog select:focus,
+dialog textarea:focus {
+    outline: none;
+    border-color: var(--brand);
+    background: #fff;
+}
+
+.confirm-btn {
+    width: 100%;
+    margin-top: 24px;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    background: var(--brand);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(23, 105, 224, 0.25);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.confirm-btn:hover {
+    background: var(--brand-dark);
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 14px;
+    background: transparent;
+    box-shadow: inset 0 0 0 2px var(--line);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: box-shadow 0.2s, color 0.2s;
+}
+
+.secondary-btn:hover {
+    box-shadow: inset 0 0 0 2px var(--brand);
+    color: var(--brand);
+}
+
+/* success screen */
+#bookDone {
+    text-align: center;
+    padding-top: 6px;
+}
+
+#bookDone h2 {
+    padding-right: 0;
+}
+
+#bookDone p {
+    color: var(--slate);
+}
+
+.success-icon {
+    display: grid;
+    place-items: center;
+    width: 66px;
+    height: 66px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: #d9f5e3;
+    color: #14532d;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.order-number {
+    display: block;
+    margin: 12px 0 14px;
+    padding: 16px;
+    border: 1px dashed var(--aqua);
+    border-radius: 14px;
+    background: var(--foam);
+    font-family: var(--font-display);
+    font-size: 32px;
+    letter-spacing: 0.03em;
+}
+
+.success-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.success-actions .confirm-btn {
+    margin-top: 0;
+}
+
+/* tracking pop-up (uses the same order card + timeline styles as above) */
+#trackDialog {
+    width: min(560px, calc(100% - 32px));
+}
+
+#trackDialog h2 {
+    margin-bottom: 22px;
+}
+
+#trackDialog .track-card {
+    padding: 0;
+    border: none;
+    background: none;
+    animation: none;
+}
+
+#trackDialog .track-top {
+    padding-right: 0;
+}
+
+
+/* ---------- booking page: responsive ---------- */
+
+@media (max-width: 900px) {
+
+    .booking {
+        grid-template-columns: 1fr;
+        padding: 44px 24px 80px;
+    }
+
+    .laundry-bag {
+        position: static;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .booking {
+        padding: 36px 20px 70px;
+    }
+
+    .booking-heading p {
+        font-size: 17px;
+    }
+
+    .clothes-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .clothes-card {
+        padding: 16px;
+    }
+
+    .laundry-bag {
+        padding: 22px 18px;
+    }
+
+    .dialog-content {
+        padding: 30px 20px 24px;
+    }
+
+    dialog h2 {
+        font-size: 26px;
+    }
+}
+
+
+/* ================= REDUCED MOTION ================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .steps::after {
+        transform: scaleX(1);
+    }
+
+    .bubble {
+        display: none;
+    }
+}
+
+
+/* ================= TRACKING POPUP ================= */
+
+.track-dialog {
+    width: min(560px, calc(100% - 32px));
+}
+
+.track-dialog .track-card {
+    padding: 4px 0 0;
+    border: none;
+    background: none;
+    animation: none;
+}
+
+.track-dialog .track-top {
+    padding-right: 44px;
+}
+
+
+/* ---------- extras for the order card and tracking pop-up ---------- */
+
+.track-meta {
+    display: block;
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--slate);
+}
+
+.track-back {
+    margin-top: 26px;
+}

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeWash - Book Laundry</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <header>
+        <nav>
+            <h2>🧺 HomeWash</h2>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#">Services</a>
+                <a href="#">Track Order</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+    <main>
+        <section class="booking">
+
+            <!-- Page Heading -->
+            <div class="booking-heading">
+                <span>HOMEWASH LAUNDRY</span>
+                <h1>Book Your Laundry</h1>
+                <p>
+                    Select the clothes you want us to wash,
+                    clean and deliver.
+                </p>
+            </div>
+
+
+            <!-- ================= CLOTHES ================= -->
+            <div class="clothes-section">
+
+                <h2>Select Your Clothes</h2>
+
+                <div class="clothes-container">
+
+                    <!-- T-SHIRT -->
+                    <div class="clothes-card">
+                        <div class="clothes-icon">👕</div>
+                        <h3>T-Shirt</h3>
+                        <p>₹20 / piece</p>
+                        <button onclick="addClothes('T-Shirt', 20)">+ Add</button>
+                    </div>
+
+                    <!-- SHIRT -->
+                    <div class="clothes-card">
+                        <div class="clothes-icon">👔</div>
+                        <h3>Shirt</h3>
+                        <p>₹25 / piece</p>
+                        <button onclick="addClothes('Shirt', 25)">+ Add</button>
+                    </div>
+
+                    <!-- JEANS -->
+                    <div class="clothes-card">
+                        <div class="clothes-icon">👖</div>
+                        <h3>Jeans</h3>
+                        <p>₹40 / piece</p>
+                        <button onclick="addClothes('Jeans', 40)">+ Add</button>
+                    </div>
+
+                    <!-- JACKET -->
+                    <div class="clothes-card">
+                        <div class="clothes-icon">🧥</div>
+                        <h3>Jacket</h3>
+                        <p>₹60 / piece</p>
+                        <button onclick="addClothes('Jacket', 60)">+ Add</button>
+                    </div>
+
+                    <!-- BEDSHEET -->
+                    <div class="clothes-card">
+                        <div class="clothes-icon">🛏️</div>
+                        <h3>Bedsheet</h3>
+                        <p>₹70 / piece</p>
+                        <button onclick="addClothes('Bedsheet', 70)">+ Add</button>
+                    </div>
+
+                    <!-- TROUSERS -->
+                    <div class="clothes-card">
+                        <div class="clothes-icon">👖</div>
+                        <h3>Trousers</h3>
+                        <p>₹35 / piece</p>
+                        <button onclick="addClothes('Trousers', 35)">+ Add</button>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- ================= LAUNDRY BAG ================= -->
+            <section class="laundry-bag">
+
+                <div class="bag-header">
+                    <div>
+                        <span>YOUR ORDER</span>
+                        <h2>🛒 Laundry Bag</h2>
+                    </div>
+
+                    <div class="bag-count">
+                        <span id="cartCount">0</span>
+                        items
+                    </div>
+                </div>
+
+
+                <!-- Items inserted by JavaScript -->
+                <div id="cartItems" class="cart-items">
+                    <div class="empty-cart">
+                        <div>🧺</div>
+                        <h3>Your laundry bag is empty</h3>
+                        <p>Add some clothes to get started.</p>
+                    </div>
+                </div>
+
+
+                <!-- ================= TOTAL ================= -->
+                <div class="cart-summary">
+
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="cartTotal">₹0</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Pickup & Delivery</span>
+                        <span>₹20</span>
+                    </div>
+
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="finalTotal">₹20</span>
+                    </div>
+
+                    <button class="checkout-btn" onclick="openBooking()">
+                        Continue to Pickup →
+                    </button>
+
+                </div>
+            </section>
+
+        </section>
+    </main>
+
+
+    <!-- ================= BOOKING DIALOG ================= -->
+    <dialog id="bookDialog">
+        <div class="dialog-content">
+
+            <button id="bookClose" class="close-btn">×</button>
+
+            <!-- FORM -->
+            <form id="bookForm">
+
+                <h2>Schedule Pickup</h2>
+
+                <p>
+                    Tell us where and when we should
+                    collect your laundry.
+                </p>
+
+                <!-- NAME -->
+                <label for="bName">Full Name</label>
+                <input type="text" id="bName" name="name" placeholder="Enter your name" required>
+
+                <!-- PHONE -->
+                <label for="bPhone">Phone Number</label>
+                <input type="tel" id="bPhone" name="phone" placeholder="Enter your phone number" required>
+
+                <!-- ADDRESS -->
+                <label for="bAddress">Pickup Address</label>
+                <textarea id="bAddress" name="address" placeholder="Enter your pickup address" rows="3"
+                    required></textarea>
+
+                <!-- DATE -->
+                <label for="bDate">Pickup Date</label>
+                <input type="date" id="bDate" name="date" required>
+
+                <!-- TIME -->
+                <label for="bSlot">Pickup Time</label>
+                <select id="bSlot" name="slot" required>
+                    <option value="">Select a time slot</option>
+                    <option value="8:00 AM - 10:00 AM">8:00 AM - 10:00 AM</option>
+                    <option value="10:00 AM - 12:00 PM">10:00 AM - 12:00 PM</option>
+                    <option value="12:00 PM - 2:00 PM">12:00 PM - 2:00 PM</option>
+                    <option value="4:00 PM - 6:00 PM">4:00 PM - 6:00 PM</option>
+                    <option value="6:00 PM - 8:00 PM">6:00 PM - 8:00 PM</option>
+                </select>
+
+                <!-- SERVICE -->
+                <label for="service">Laundry Service</label>
+                <select id="service" name="service" required>
+                    <option value="">Select service</option>
+                    <option value="wash">Wash</option>
+                    <option value="wash-iron">Wash + Iron</option>
+                    <option value="dry-clean">Dry Clean</option>
+                    <option value="iron">Iron Only</option>
+                </select>
+
+                <!-- SPECIAL INSTRUCTIONS -->
+                <label for="instructions">Special Instructions</label>
+                <textarea id="instructions" name="instructions" placeholder="Anything we should know?"
+                    rows="3"></textarea>
+
+                <button type="submit" class="confirm-btn">Confirm Pickup</button>
+
+            </form>
+
+
+            <!-- ================= SUCCESS ================= -->
+            <div id="bookDone" hidden>
+
+                <div class="success-icon">✓</div>
+
+                <h2>Pickup Scheduled!</h2>
+
+                <p>Your HomeWash order ID is:</p>
+
+                <strong id="bookDoneId" class="order-number">HW1043</strong>
+
+                <p id="bookDoneText">Your rider will arrive soon.</p>
+
+                <div class="success-actions">
+                    <button id="bookTrack" class="confirm-btn">Track Order</button>
+                    <button id="bookAnother" class="secondary-btn">Book Another</button>
+                </div>
+
+            </div>
+
+        </div>
+    </dialog>
+
+
+    <!-- ================= TRACK ORDER DIALOG ================= -->
+    <dialog id="trackDialog">
+        <div class="dialog-content">
+
+            <button id="trackClose" class="close-btn">×</button>
+
+            <h2>Track Your Order</h2>
+
+            <div id="trackBody"></div>
+
+        </div>
+    </dialog>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script type="module" src="firebase-init.js"></script>
+    <script type="module" src="script.js"></script>
+
+</body>
+
+</html>
